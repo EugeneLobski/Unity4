@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
     
-    public event Action<float> OnHealthChanged;
+    public event Action<float> HealthChanged;
     public int Health { get; private set; }
 
     private void Start() {
@@ -19,13 +19,13 @@ public class Character : MonoBehaviour
     public void Heal (int healAmount) {
         Health += healAmount;
         Health = Mathf.Clamp(Health, 0, _maxHealth);
-        OnHealthChanged.Invoke(GetHealthPercent());
+        HealthChanged.Invoke(GetHealthPercent());
     }
 
     public void TakeDamage(int damageAmount) {
         Health -= damageAmount;
         Health = Mathf.Clamp(Health, 0, _maxHealth);
-        OnHealthChanged.Invoke(GetHealthPercent());
+        HealthChanged.Invoke(GetHealthPercent());
     }
 
     private float GetHealthPercent () {
