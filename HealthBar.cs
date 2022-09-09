@@ -8,10 +8,11 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Character _character;
 
     private void Start () {
-        _character.OnHealthChanged += ChangeBar;
+        _character.HealthChanged += ChangeBar;
     }
 
     private void ChangeBar (float health) {
-        transform.DOScaleX(health, 1);
+        float duration = 1f;
+        transform.DOScaleX(health, duration);
     }
 }
