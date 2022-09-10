@@ -7,8 +7,12 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Character _character;
 
-    private void Start () {
+    private void OnEnable () {
         _character.HealthChanged += ChangeBar;
+    }
+
+    private void OnDisable () {
+        _character.HealthChanged -= ChangeBar;
     }
 
     private void ChangeBar (float health) {
